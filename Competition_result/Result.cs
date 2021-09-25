@@ -30,21 +30,33 @@ namespace Competition_result
 
         private void сохранитьToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SaveFileDialog saveTableAsCSV = new SaveFileDialog();
-            saveTableAsCSV.Filter = "Документ TXT (*.txt) |*.txt";
-            saveTableAsCSV.Title = "Сохранить результат расчетов";
-            if (saveTableAsCSV.ShowDialog() == DialogResult.OK)
+            SaveFileDialog saveTable = new SaveFileDialog();
+            saveTable.Filter = "Документ TXT (*.txt) |*.txt";
+            if (saveTable.ShowDialog() == DialogResult.OK)
             {
                 try
                 {
-                    FileStream file = new FileStream(saveTableAsCSV.FileName, FileMode.Create);
+                    FileStream file = new FileStream(saveTable.FileName, FileMode.Create);
                     StreamWriter sw = new StreamWriter(file, Encoding.Default);
-                    sw.Write(Surname.Text + " " + tbResult.Text + " " + Time.Text);
+                    sw.Write(tbResult.Text);
                     sw.WriteLine();
                     sw.Close();
                 }
                 catch { }
             }
+        }
+
+        private void Surname_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Parsing();
+
+        }
+
+        void Parsing()
+        {
+            string data = tbResult.Text;
+            string[] allData = data.Split(',', '.', ';', ' ');
+
         }
     }
 }

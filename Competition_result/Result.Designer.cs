@@ -85,6 +85,7 @@
             this.Surname.Name = "Surname";
             this.Surname.Size = new System.Drawing.Size(121, 21);
             this.Surname.TabIndex = 3;
+            this.Surname.SelectedIndexChanged += new System.EventHandler(this.Surname_SelectedIndexChanged);
             // 
             // tbResult
             // 
